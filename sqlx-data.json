@@ -1,0 +1,135 @@
+{
+  "db": "SQLite",
+  "0a6e014b04ac8c7f4f2ac157b85be713ea6b4e5d620aecf55037df7cebd36229": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id: Uuid",
+          "ordinal": 0,
+          "type_info": "Blob"
+        },
+        {
+          "name": "mail",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "password",
+          "ordinal": 2,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Right": 2
+      }
+    },
+    "query": "\nSELECT id AS \"id: Uuid\", mail, password\nFROM users\nWHERE mail = $1 AND password = $2\n        "
+  },
+  "5264fedb5610db4644fc0ef4a0994fbcb6ccaf1b6493d8b41437f067e5d16425": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Right": 1
+      }
+    },
+    "query": "\nDELETE FROM tokens\nWHERE issue_time <= ?\n                "
+  },
+  "58f0b57427ad505b30ff115161620111def56c4607e3bfdc1aa889fe87292605": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Right": 4
+      }
+    },
+    "query": "\nINSERT INTO tokens VALUES ($1, $2, $3, $4)\n            "
+  },
+  "8b3a836449219547119c7020dcac045efda6c947e8eaa1e45380677008884aa6": {
+    "describe": {
+      "columns": [
+        {
+          "name": "access_token",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "client_token",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "bound_profile: Uuid",
+          "ordinal": 2,
+          "type_info": "Blob"
+        },
+        {
+          "name": "issue_time",
+          "ordinal": 3,
+          "type_info": "Datetime"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Right": 1
+      }
+    },
+    "query": "\nSELECT access_token, client_token, bound_profile AS \"bound_profile: Uuid\", issue_time\nFROM tokens\nWHERE access_token = ?\n        "
+  },
+  "8c565a3ff822747aa0bf392f0262a27f3997c077d22f5ef2bc45a05010565e5a": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Right": 1
+      }
+    },
+    "query": "\nDELETE FROM tokens\nWHERE access_token = ?\n        "
+  },
+  "fb74d75e196838cb025349485617695d28780b6ac9acc93962b75843f93aa269": {
+    "describe": {
+      "columns": [
+        {
+          "name": "access_token",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "client_token",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "bound_profile: Uuid",
+          "ordinal": 2,
+          "type_info": "Blob"
+        },
+        {
+          "name": "issue_time",
+          "ordinal": 3,
+          "type_info": "Datetime"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Right": 1
+      }
+    },
+    "query": "\nSELECT access_token, client_token, bound_profile AS \"bound_profile: Uuid\", issue_time\nFROM tokens\nWHERE bound_profile = ?\nORDER BY issue_time\n        "
+  }
+}
